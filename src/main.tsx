@@ -9,7 +9,7 @@ import { ThemeProvider, createTheme } from "@mui/material";
 const theme = createTheme({
   direction: "rtl",
   typography: {
-    fontFamily: `"iransans"`,
+    fontFamily: `"Cabin"`,
     fontSize: 11,
     fontWeightLight: 300,
     fontWeightRegular: 400,
@@ -27,3 +27,9 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
     </ThemeProvider>
   </HelmetProvider>
 );
+
+// font-family: "Cabin", sans-serif !important;
+//   font-optical-sizing: auto;
+//   /* font-weight: <weight>; */
+//   font-style: normal;
+//   font-variation-settings: "wdth" 100;

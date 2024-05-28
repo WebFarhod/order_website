@@ -10,7 +10,7 @@ interface Tab {
   _id: string;
   name: string;
   isSelect: boolean;
-  price: string;
+  price: number;
   image?: string;
   include?: string[];
 }
