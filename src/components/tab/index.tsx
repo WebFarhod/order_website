@@ -180,7 +180,7 @@ const TabsComponent: React.FC<IProps> = ({
 
   return (
     <Accordion
-      expanded={isSelect}
+      // expanded={isSelect}
       elevation={5}
       sx={{
         // p: 0,
@@ -192,14 +192,14 @@ const TabsComponent: React.FC<IProps> = ({
         expandIcon={<ExpandMoreIcon sx={{ color: "white" }} />}
         aria-controls="panel3-content"
         id="panel3-header"
-        onClick={onTabSelectDefalut}
+        // onClick={onTabSelectDefalut}
         // onClick={() => console.log("hg")}
       >
         <Stack direction="row" alignItems="center" spacing={3}>
           <Typography variant="h4" p={2}>
             {title}
           </Typography>
-          <Switch {...label} checked={isSelect} />
+          <Switch {...label} checked={isSelect} onClick={onTabSelectDefalut} />
         </Stack>
       </AccordionSummary>
       <AccordionDetails sx={{ p: 0 }}>
