@@ -1,5 +1,5 @@
 export interface IDataType {
-  _id: string;
+  _id?: string;
   title: string;
   isSelect: boolean;
   multeSelect: boolean;
@@ -14,7 +14,7 @@ interface Tab {
   image?: string;
   include?: string[];
 }
-export interface TabPanel {
-  price: string;
-  image?: string;
-}
+// export interface TabPanel {
+//   price: string;
+//   image?: string;
+// }

@@ -5,6 +5,8 @@ import "./index.css";
 import { HelmetProvider } from "react-helmet-async";
 import { BrowserRouter } from "react-router-dom";
 import { ThemeProvider, createTheme } from "@mui/material";
+import { QueryClientProvider } from "@tanstack/react-query";
+import queryClient from "./service/query/queryClient.ts";
 
 const theme = createTheme({
   direction: "rtl",
@@ -20,9 +22,11 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
   <HelmetProvider>
     <ThemeProvider theme={theme}>
       <BrowserRouter>
-        <Suspense fallback={<>l</>}>
-          <App />
-        </Suspense>
+        <QueryClientProvider client={queryClient}>
+          <Suspense fallback={<>l</>}>
+            <App />
+          </Suspense>
+        </QueryClientProvider>
       </BrowserRouter>
     </ThemeProvider>
   </HelmetProvider>

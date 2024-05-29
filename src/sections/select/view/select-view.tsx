@@ -1,11 +1,19 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react";
 import TabsComponent from "../../../components/tab";
-import { MainData } from "../../../data";
-import { Box, Container, Stack, Typography } from "@mui/material";
+import {
+  Box,
+  CircularProgress,
+  Container,
+  Stack,
+  Typography,
+} from "@mui/material";
 import { IDataType } from "../../../types/dataType";
+import { useData } from "../../../service/query/data/classQuery";
 
 export default function SelectView() {
-  const [datas, setDatas] = useState<IDataType[]>(MainData); // Corrected state type
+  const { data: MainData = [], isLoading } = useData();
+  const [datas, setDatas] = useState<IDataType[]>(MainData);
   const [price, setPrice] = useState<number>(0);
 
   const handleTabSelectChange = (
@@ -56,9 +64,29 @@ export default function SelectView() {
           .reduce((sum, tab) => sum + tab.price, 0)
       )
       .reduce((sum, tab) => sum + tab, 0);
-    console.log(totalPrice);
     setPrice(totalPrice);
   }, [datas]);
+
+  useEffect(() => {
+    setDatas(MainData);
+  }, [MainData]);
+
+  if (isLoading) {
+    return (
+      <Stack
+        sx={{
+          width: "100%",
+          height: "50vh",
+          display: "flex",
+          justifyContent: "end",
+          alignItems: "center",
+        }}
+      >
+        <CircularProgress sx={{ color: "white" }} />
+      </Stack>
+    );
+  }
+
   return (
     <Container maxWidth="xl" sx={{ mb: "100px" }}>
       <Typography
@@ -77,9 +105,9 @@ export default function SelectView() {
             key={data._id}
             data={{ ...data, isSelect: data.isSelect || false }}
             onTabSelectChange={(tabId, checked) =>
-              handleTabSelectChange(data._id, tabId, checked)
+              handleTabSelectChange(data?._id || "", tabId, checked)
             }
-            onTabSelectDefalut={() => handleTabSelectDefault(data._id)}
+            onTabSelectDefalut={() => handleTabSelectDefault(data?._id || "")}
           />
         ))}
       </Stack>
